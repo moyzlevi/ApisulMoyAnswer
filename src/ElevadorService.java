@@ -2,17 +2,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -20,7 +15,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class ElevadorService implements IElevadorService {
-
+	 
 	private static List<Survey> surveys = new ArrayList<>();
 	private static JSONParser jsonparse = new JSONParser();
 
@@ -69,7 +64,6 @@ public class ElevadorService implements IElevadorService {
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
 						LinkedHashMap::new));
 		List<Integer> menoresValores = new ArrayList<>();
-		Integer[] vect = new Integer[15];
 		int i = 0;
 		for (Integer key : result.keySet()) {
 			if (i < 10) {
@@ -112,7 +106,6 @@ public class ElevadorService implements IElevadorService {
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
 						LinkedHashMap::new));
 		List<Character> topElevadores = new ArrayList<>();
-		Integer[] vect = new Integer[4];
 		int i = 0;
 		for (Character key : result.keySet()) {
 			if (i > 2 && i <= 4) {
@@ -347,6 +340,7 @@ public class ElevadorService implements IElevadorService {
 
 	@Override
 	public float percentualDeUsoElevadorA() {
+		Locale.setDefault(Locale.US);
 		float total = surveys.size();
 		
 		Map<Character, Float> elevadores = new HashMap<>();
@@ -358,12 +352,14 @@ public class ElevadorService implements IElevadorService {
 		}
 		
 		float percentual = elevadores.get('A')/total * 100;
-		
-		return percentual;
+		Float formated = Float.parseFloat(String.format("%.2f", percentual));
+		float simple = formated;
+		return simple;
 }
 
 	@Override
 	public float percentualDeUsoElevadorB() {
+		Locale.setDefault(Locale.US);
 		float total = surveys.size();
 		
 		Map<Character, Float> elevadores = new HashMap<>();
@@ -375,12 +371,15 @@ public class ElevadorService implements IElevadorService {
 		}
 		
 		float percentual = elevadores.get('B')/total * 100;
-		
-		return percentual;
+		Float formated = Float.parseFloat(String.format("%.2f", percentual));
+		float simple = formated;
+		return simple;
 }
+
 
 	@Override
 	public float percentualDeUsoElevadorC() {
+		Locale.setDefault(Locale.US);
 		float total = surveys.size();
 		
 		Map<Character, Float> elevadores = new HashMap<>();
@@ -393,11 +392,15 @@ public class ElevadorService implements IElevadorService {
 		
 		float percentual = elevadores.get('C')/total * 100;
 		
-		return percentual;
+		Float formated = Float.parseFloat(String.format("%.2f", percentual));
+		float simple = formated;
+		return simple;
+
 }
 
 	@Override
 	public float percentualDeUsoElevadorD() {
+		Locale.setDefault(Locale.US);
 		float total = surveys.size();
 		
 		Map<Character, Float> elevadores = new HashMap<>();
@@ -409,12 +412,14 @@ public class ElevadorService implements IElevadorService {
 		}
 		
 		float percentual = elevadores.get('D')/total * 100;
-		
-		return percentual;
+		Float formated = Float.parseFloat(String.format("%.2f", percentual));
+		float simple = formated;
+		return simple;
 }
 
 	@Override
 	public float percentualDeUsoElevadorE() {
+		Locale.setDefault(Locale.US);
 		float total = surveys.size();
 		
 		Map<Character, Float> elevadores = new HashMap<>();
@@ -427,7 +432,9 @@ public class ElevadorService implements IElevadorService {
 		
 		float percentual = elevadores.get('E')/total * 100;
 		
-		return percentual;
+		Float formated = Float.parseFloat(String.format("%.2f", percentual));
+		float simple = formated;
+		return simple;
 }
 
 }
